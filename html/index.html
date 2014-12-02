@@ -12,14 +12,14 @@
 	<strong class="ww-silde-total">10</strong>
 </header>
 <!-- 首页 -->
-<div class="ww-slide" data-role="slide">
+<div id="slide1" class="ww-slide slide ww-slide-curr" data-role="slide">
     <h1>大标题大标题</h1>
     <section>
         <p class="ww-tit-sub">by XXX 2012-12-22</p>
     </section>
 </div>
 <!-- 其他页 -->
-<div class="ww-slide" data-role="slide">
+<div id="slide2" class="ww-slide slide" data-role="slide">
     <h2>二级级标题</h2>
     <section>
         <p>这个事内容</p>
@@ -27,7 +27,7 @@
         <p>这个事内容</p>
     </section>
 </div>
-<div class="ww-slide ww-slide-curr" data-role="slide">
+<div id="slide3" class="ww-slide slide" data-role="slide">
     <h2>二级级标题</h2>
     <section>
 	    <pre>var fn = {
@@ -52,8 +52,12 @@
 	    <a href="javascript:;" class="ww-tool" data-title="帮助" data-role="tool">&#xe63d;</a>
     </div>
 </footer>
-<script src="../js/lib/jquery-1.11.1.js"></script>
+<script src="../js/jquery-1.11.1.js"></script>
 <script src="../js/slides.js"></script>
-<!--<script data-main="../js/slides" src="../js/require.js"></script>-->
+<script>
+$(function() {
+	$.wwSlide.init();
+});
+</script>
 </body>
 </html>
