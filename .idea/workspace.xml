@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a36f925b-48fc-4472-ab0f-1466b60b2040" name="!changes.default.changelist.name!" comment="">
-      <change type="DELETED" beforePath="E:\work\h5sildes\js\lib\a.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\work\h5sildes\js\require.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/index.html" afterPath="$PROJECT_DIR$/html/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/silde.css" afterPath="$PROJECT_DIR$/css/silde.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/silde.scss" afterPath="$PROJECT_DIR$/css/silde.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/slides.js" afterPath="$PROJECT_DIR$/js/slides.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="E:\work\h5sildes\js\lib\jquery-1.11.1.js" afterPath="$PROJECT_DIR$/js/jquery-1.11.1.js" />
     </list>
     <ignored path="h5sildes.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,8 +31,8 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.4827585" vertical-offset="0" max-vertical-offset="1360">
-              <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+            <state vertical-scroll-proportion="-25.172413" vertical-offset="430" max-vertical-offset="1360">
+              <caret line="58" column="8" selection-start-line="58" selection-start-column="6" selection-end-line="58" selection-end-column="8" />
               <folding>
                 <element signature="n#style#0;n#strong#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -47,8 +43,8 @@
       <file leaf-file-name="slides.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/slides.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54535973" vertical-offset="2517" max-vertical-offset="3980">
-              <caret line="152" column="46" selection-start-line="152" selection-start-column="46" selection-end-line="152" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.39520332" vertical-offset="1801" max-vertical-offset="4420">
+              <caret line="109" column="25" selection-start-line="109" selection-start-column="25" selection-end-line="109" selection-end-column="25" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -59,8 +55,8 @@
       <file leaf-file-name="silde.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/silde.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.0925927" vertical-offset="1031" max-vertical-offset="6520">
-              <caret line="68" column="18" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="18" />
+            <state vertical-scroll-proportion="-8.314815" vertical-offset="4271" max-vertical-offset="6580">
+              <caret line="236" column="21" selection-start-line="236" selection-start-column="21" selection-end-line="236" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -162,10 +158,6 @@
               <option name="myItemId" value="h5sildes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -174,6 +166,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="h5sildes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -229,6 +225,7 @@
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="E:/b/tmp/use/slide" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -357,18 +354,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33263817" vertical-offset="19221" max-vertical-offset="76320">
+          <caret line="977" column="0" selection-start-line="977" selection-start-column="0" selection-end-line="977" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/css/silde.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.0925927" vertical-offset="1031" max-vertical-offset="6520">
-          <caret line="68" column="18" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="18" />
+        <state vertical-scroll-proportion="-8.314815" vertical-offset="4271" max-vertical-offset="6580">
+          <caret line="236" column="21" selection-start-line="236" selection-start-column="21" selection-end-line="236" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.4827585" vertical-offset="0" max-vertical-offset="1360">
-          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+        <state vertical-scroll-proportion="-25.172413" vertical-offset="430" max-vertical-offset="1360">
+          <caret line="58" column="8" selection-start-line="58" selection-start-column="6" selection-end-line="58" selection-end-column="8" />
           <folding>
             <element signature="n#style#0;n#strong#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -377,8 +382,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/slides.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54535973" vertical-offset="2517" max-vertical-offset="3980">
-          <caret line="152" column="46" selection-start-line="152" selection-start-column="46" selection-end-line="152" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.39520332" vertical-offset="1801" max-vertical-offset="4420">
+          <caret line="109" column="25" selection-start-line="109" selection-start-column="25" selection-end-line="109" selection-end-column="25" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

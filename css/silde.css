@@ -210,6 +210,9 @@ p {
       .ww-slide section pre.small {
         font-size: 50%; }
 
+.ww-fade {
+  opacity: 0; }
+
 .ww-slide-curr {
   visibility: visible; }
 

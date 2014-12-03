@@ -17,8 +17,7 @@
 ;(function($) {
 	$.extend({
 		wwSlide: {
-			// 配置项
-			// 激活的page
+			// 激活的slide
 			activeSlide: null,
 			// 激活的动画
 			activeAnimate: null,
@@ -31,12 +30,13 @@
 			// 动画部件索引
 			indexAnimate: 0,
 			arrayTools: ["Home","Remind","Background","Previous", "Next","List","Help"],
-			//本地存储时间提醒
+			// 本地存储时间提醒
 			timeLocalstorageKey: location.href.split("#")[0] + "wwTime",
 			bgLocalstorageKey: location.href.split("#")[0] + "wwBg",
 
-			// 显隐
+			// slide 显隐 两个参数，一个参数是当前slide 一个是参数是目标slide
 			visible: function(activeSlide, targetSlide) {
+				// 如果有当前slide,则去除class
 				if(activeSlide) {
 					activeSlide.removeClass("ww-slide-curr");
 				}
@@ -46,9 +46,12 @@
 					location.replace(location.href.split("#")[0] + "#" + targetSlide.attr("id"));
 				}, 400);
 
-				this.activeSlide = targetSlide.addClass("ww-slide-curr");
+				// 当前激活slide变为之前目标slide
+				targetSlide.addClass("ww-slide-curr").trigger("slideload");
+				this.activeSlide = targetSlide;
+				// 当前激活slide的index变为目标slide的index
 				this.indexSlide = targetSlide.data("indexSlide");
-
+				// 触发进度条事件
 				this.process();
 				return this;
 			},
@@ -61,31 +64,32 @@
 					$(".ww-silde-progress").html(nowSlide).width(nowSlide / totalSlide * 100 + "%");
 				}
 			},
-			// 切换
-			slide: function() {
-				// 数据化
+			group: function() {
+				// 把slide和动画部件放入数组中
 				var arraySlide = [],
 					arrayAnimate = [],
 					indexAnimate = 0;
-				// 页面
+				// 所有slide部分
 				var eleSlide = $("div[data-role='slide']");
-				eleSlide.each(function(indexSlide){
+				eleSlide.each(function(indexSlide) {
 					$(this).data("index", indexAnimate);
 					arrayAnimate.push($(this));
 					$(this).data("indexSlide", indexSlide);
 					arraySlide.push($(this));
 					indexAnimate++;
-					// 动画部件
-					$(this).find("[data-role='fade']").each(function() {
+					var eleFade = $(this).find("[data-role='fade']");
+					eleFade.each(function() {
 						$(this).data("index", indexAnimate);
 						arrayAnimate.push($(this));
 						indexAnimate++;
-					})
-
+					});
 				});
+
 				this.arraySlide = arraySlide;
 				this.arrayAnimate = arrayAnimate;
-
+				return this
+			},
+			initIndex: function() {
 				// 根据URL获取slide索引值
 				var targetId = location.href.split("#")[1];
 				if (targetId) {
@@ -99,12 +103,16 @@
 					this.indexSlide = 0;
 					this.indexAnimate = 0;
 				}
+				return this;
+			},
+			// 切换
+			slide: function() {
+				debugger;
 				// 动画个页面的切换主要由 indexAnimate决定
 				var eleBeingAnimate = this.arrayAnimate[this.indexAnimate];
 				if (eleBeingAnimate) {
 					var roleBeingAnimate = eleBeingAnimate.attr("data-role");
 				};
-
 				// 上一页下一页  当前活动页面和动画的索引
 				var elePrevSlide = this.arraySlide[this.indexSlide - 1],
 					eleNextSlide = this.arraySlide[this.indexSlide + 1],
@@ -115,7 +123,6 @@
 				if (this.activeSlide) {
 					// 当前显示page的index
 					indexActiveSlide = this.activeSlide.data("index");
-
 				};
 				if (this.activeAnimate) {
 					// 当前动画的index
@@ -139,7 +146,6 @@
 						}
 					}
 				} else if (roleBeingAnimate === "slide") {
-
 					if (!this.activeSlide) {
 						// 此时为直接载入的情况
 						//eleBeingAnimate.addClass("in")
@@ -162,11 +168,26 @@
 				}
 				this.activeAnimate = eleBeingAnimate;
 
-
+				return this;
 			},
 			// 事件
-			event: function() {
-				var self = this;
+			events: function() {
+				var indexAnimate = this.indexAnimate,
+					arrayAnimate = this.arrayAnimate,
+					self = this;
+				var funIndexAnimate = function() {
+					if (indexAnimate >= arrayAnimate.length) {
+						indexAnimate = arrayAnimate.length -1;
+						alert("主人，已经播放完毕了！");
+					} else if (indexAnimate < 0) {
+						indexAnimate = 0;
+						alert("主人，前面已经没有了！");
+					} else {
+						alert("sdadasd")
+						self.indexAnimate = indexAnimate;
+						self.slide();
+					}
+				};
 				// 键盘事件
 				$(document).bind({
 					"keyup": function(event) {
@@ -181,12 +202,13 @@
 							self.slide();
 						}
 					}
-				})
+				});
+				return this;
 			},
 
 			//初始化
 			init: function() {
-				this.event();
+				this.group().initIndex().events().slide()
 			}
 
 		}
