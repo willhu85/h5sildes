@@ -1,19 +1,6 @@
 /**
  * Created by willhu on 2014/12/01
  */
-//require.config({
-//	baseUrl: "../js/",
-//	paths : {
-//		"jquery" : ["http://libs.baidu.com/jquery/2.0.3/jquery", "/lib/jquery-1.11.1"],
-//		"a": ["lib/a"]
-//	}
-//});
-//require(["jquery", "a"],function($, a) {
-//	$(function() {
-//		alert(a)
-//	});
-//});
-
 ;(function($) {
 	$.extend({
 		wwSlide: {
@@ -29,10 +16,10 @@
 			indexSlide: 0,
 			// 动画部件索引
 			indexAnimate: 0,
-			arrayTools: ["Home","Remind","Background","Previous", "Next","List","Help"],
+			arrayTools: ["Home","Remind","Background","Previous", "Next","List"],
 			// 本地存储时间提醒
-			timeLocalstorageKey: location.href.split("#")[0] + "wwTime",
-			bgLocalstorageKey: location.href.split("#")[0] + "wwBg",
+			//timeLocalstorageKey: location.href.split("#")[0] + "wwTime",
+			//bgLocalstorageKey: location.href.split("#")[0] + "wwBg",
 
 			// slide 显隐 两个参数，一个参数是当前slide 一个是参数是目标slide
 			visible: function(activeSlide, targetSlide) {
@@ -44,7 +31,7 @@
 				setTimeout(function() {
 					//改变url地址栏的快速锚点
 					location.replace(location.href.split("#")[0] + "#" + targetSlide.attr("id"));
-				}, 400);
+				}, 100);
 
 				// 当前激活slide变为之前目标slide
 				targetSlide.addClass("ww-slide-curr").trigger("slideload");
@@ -59,41 +46,41 @@
 				var nowSlide = this.indexSlide + 1,
 					totalSlide = this.arraySlide.length;
 				if(nowSlide === totalSlide) {
-					$(".ww-silde-progress").html("&nbsp;").width("100%");
+					this.eleProcess.html("&nbsp;").width("100%");
 				} else {
-					$(".ww-silde-progress").html(nowSlide).width(nowSlide / totalSlide * 100 + "%");
+					this.eleProcess.html(nowSlide).width(nowSlide / totalSlide * 100 + "%");
 				}
 			},
 			group: function() {
 				// 把slide和动画部件放入数组中
-				var arraySlide = [],
-					arrayAnimate = [],
-					indexAnimate = 0;
+				var _arraySlide = [],
+					_arrayAnimate = [],
+					_indexAnimate = 0;
 				// 所有slide部分
 				var eleSlide = $("div[data-role='slide']");
 				eleSlide.each(function(indexSlide) {
-					$(this).data("index", indexAnimate);
-					arrayAnimate.push($(this));
+					$(this).data("index", _indexAnimate);
+					_arrayAnimate.push($(this));
 					$(this).data("indexSlide", indexSlide);
-					arraySlide.push($(this));
-					indexAnimate++;
+					_arraySlide.push($(this));
+					_indexAnimate++;
 					var eleFade = $(this).find("[data-role='fade']");
 					eleFade.each(function() {
-						$(this).data("index", indexAnimate);
-						arrayAnimate.push($(this));
-						indexAnimate++;
+						$(this).data("index", _indexAnimate);
+						_arrayAnimate.push($(this));
+						_indexAnimate++;
 					});
 				});
-
-				this.arraySlide = arraySlide;
-				this.arrayAnimate = arrayAnimate;
+				this.arraySlide = _arraySlide;
+				this.arrayAnimate = _arrayAnimate;
 				return this
 			},
 			initIndex: function() {
 				// 根据URL获取slide索引值
 				var targetId = location.href.split("#")[1];
+				var targetElement;
 				if (targetId) {
-					var targetElement = $("#" + targetId);
+					targetElement = $("#" + targetId);
 				}
 				// 如果锚点不存在，或锚点对应元素不存在，index=0
 				if (targetElement && targetElement.length) {
@@ -107,67 +94,71 @@
 			},
 			// 切换
 			slide: function() {
-				debugger;
 				// 动画个页面的切换主要由 indexAnimate决定
 				var eleBeingAnimate = this.arrayAnimate[this.indexAnimate];
+				var roleBeingAnimate;
 				if (eleBeingAnimate) {
-					var roleBeingAnimate = eleBeingAnimate.attr("data-role");
-				};
+					roleBeingAnimate = eleBeingAnimate.attr("data-role");
+				}
 				// 上一页下一页  当前活动页面和动画的索引
-				var elePrevSlide = this.arraySlide[this.indexSlide - 1],
-					eleNextSlide = this.arraySlide[this.indexSlide + 1],
+				var elePrevSlide = this.arraySlide[this.indexSlide - 1];
+					//eleNextSlide = this.arraySlide[this.indexSlide + 1];
 					// 默认index为-1
-					indexActiveSlide = -1,
+					indexActiveSlide = -1;
 					indexActiveAnimate = -1;
 
 				if (this.activeSlide) {
 					// 当前显示page的index
 					indexActiveSlide = this.activeSlide.data("index");
-				};
+				}
 				if (this.activeAnimate) {
 					// 当前动画的index
-					indexActiveAnimate = this.activeAnimate.data("index")
+					indexActiveAnimate = this.activeAnimate.data("index");
 				}
 
-				if (roleBeingAnimate === "fade") {
-					if(this.indexAnimate < indexActiveAnimate) {
-						// 当前页离开
-						this.activeSlide.removeClass("in").addClass("out reverse");
-						// 目标页进入
-						elePrevSlide.removeClass("out").addClass("in reverse");
-						// 显示目标元素
-						this.visible(this.activeSlide,elePrevSlide);
-						elePrevSlide.find("[data-role='fade']").removeClass("out").addClass("in");
-					} else {
-						if (this.indexAnimate > indexActiveAnimate) {
-							eleBeingAnimate.removeClass("out").addClass("in");
+				if (roleBeingAnimate) {
+					if (roleBeingAnimate === "fade") {
+						// 如果当前的是fade元素
+						// 当前动画的index和当前slide页面的index对比
+						if (this.indexAnimate < indexActiveSlide) {
+							// 当前页离开
+							this.activeSlide.removeClass("in").addClass("out reverse");
+							// 目标页进入
+							elePrevSlide.removeClass("out").addClass("in reverse");
+							// 显示目标元素
+							this.visible(this.activeSlide, elePrevSlide);
+							elePrevSlide.find("[data-role='fade']").removeClass("out").addClass("in");
 						} else {
-							this.activeAnimate.removeClass("in").addClass("out");
+							// 索引值比较前进
+							if (this.indexAnimate > indexActiveAnimate) {
+								eleBeingAnimate.removeClass("out").addClass("in");
+							} else {
+								this.activeAnimate.removeClass("in").addClass("out");
+							}
 						}
-					}
-				} else if (roleBeingAnimate === "slide") {
-					if (!this.activeSlide) {
-						// 此时为直接载入的情况
-						//eleBeingAnimate.addClass("in")
-					} else if (this.indexAnimate > indexActiveSlide) {
-						// 即将展示页的索引大于当前页的索引，前进
-						// 当前页左边移出
-						this.activeSlide.removeClass("in reverse").addClass("out");
-						// 即将展示页面右边进入
-						eleBeingAnimate.removeClass("out reverse").addClass("in");
-					} else if (this.indexAnimate < indexActiveSlide) {
-						// 即将展示页的索引小于当前页的索引，后退
-						// 当前页右边移出
-						this.activeSlide.removeClass("in").addClass("out reverse");
-						// 即将展示页左侧进入
-						eleBeingAnimate.removeClass("out").addClass("in reverse");
-					}
+					} else if (roleBeingAnimate === "slide") {
+						if (!this.activeSlide) {
+							// 此时为直接载入的情况
+							//eleBeingAnimate.addClass("in")
+						} else if (this.indexAnimate > indexActiveSlide) {
+							// 即将展示页的索引大于当前页的索引，前进
+							// 当前页左边移出
+							this.activeSlide.removeClass("in reverse").addClass("out");
+							// 即将展示页面右边进入
+							eleBeingAnimate.removeClass("out reverse").addClass("in");
+						} else if (this.indexAnimate < indexActiveSlide) {
+							// 即将展示页的索引小于当前页的索引，后退
+							// 当前页右边移出
+							this.activeSlide.removeClass("in").addClass("out reverse");
+							// 即将展示页左侧进入
+							eleBeingAnimate.removeClass("out").addClass("in reverse");
+						}
 
-					eleBeingAnimate.find("[data-role='fade']").removeClass("in out");
-					this.visible(this.activeSlide, eleBeingAnimate);
+						eleBeingAnimate.find("[data-role='fade']").removeClass("in out");
+						this.visible(this.activeSlide, eleBeingAnimate);
+					}
+					this.activeAnimate = eleBeingAnimate;
 				}
-				this.activeAnimate = eleBeingAnimate;
-
 				return this;
 			},
 			// 事件
@@ -178,16 +169,16 @@
 				var funIndexAnimate = function() {
 					if (indexAnimate >= arrayAnimate.length) {
 						indexAnimate = arrayAnimate.length -1;
-						alert("主人，已经播放完毕了！");
+						alert("结束，谢谢观赏！");
 					} else if (indexAnimate < 0) {
 						indexAnimate = 0;
-						alert("主人，前面已经没有了！");
+						alert("已经到头了！");
 					} else {
-						alert("sdadasd")
 						self.indexAnimate = indexAnimate;
 						self.slide();
 					}
 				};
+
 				// 键盘事件
 				$(document).bind({
 					"keyup": function(event) {
@@ -195,20 +186,52 @@
 						//alert(keyCode)
 						// 下一页
 						if (keyCode === 39) {
+							indexAnimate++;
 							event.preventDefault();
-							self.slide();
+							funIndexAnimate();
 						} else if (keyCode === 37) {
+							indexAnimate--;
 							event.preventDefault();
-							self.slide();
+							funIndexAnimate();
 						}
 					}
 				});
 				return this;
 			},
+			tools: function() {
+				var eleHeader = $("[data-role='header']").eq(0),
+					eleFooter = $("[data-role='footer']").eq(0);
+				// 头部进度条
+				if (eleHeader) {
+					this.eleHeader = eleHeader;
+					this.eleTotal = $("<strong class='ww-silde-total'></strong>").html(this.arraySlide.length);
+					this.eleProcess = $("<strong class='ww-silde-progress'></strong>");
 
+					this.eleHeader.append(this.eleProcess).append(this.eleTotal);
+					this.process();
+					return this;
+				}
+				var toolsTitles = {
+					"Home": "回到首页|&#x3435;",
+					"Remind": "添加提醒|&#xf00b5;",
+					"Background": "修改背景|&#xe60b;",
+					"Previous": "前一页|&#xf007a;",
+					"Next": "下一页|&#xe646;",
+					"List": "快速跳转|>&#xe670;"
+				}
+				// 底部工具栏
+				if (eleFooter) {
+					var toolsHtml = "";
+					$.each(this.arrayTools, function(index, key) {
+						console.log("index:"+ index + "&&&&key:" + key)
+						var arrayToolsBtn;
+						//if(toolsTitles[key])
+					})
+				}
+			},
 			//初始化
 			init: function() {
-				this.group().initIndex().events().slide()
+				this.group().initIndex().tools().events().slide()
 			}
 
 		}
