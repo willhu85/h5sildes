@@ -104,8 +104,8 @@
 				var elePrevSlide = this.arraySlide[this.indexSlide - 1];
 					//eleNextSlide = this.arraySlide[this.indexSlide + 1];
 					// 默认index为-1
-					indexActiveSlide = -1;
-					indexActiveAnimate = -1;
+					var indexActiveSlide = -1;
+					var	indexActiveAnimate = -1;
 
 				if (this.activeSlide) {
 					// 当前显示page的index
@@ -161,7 +161,7 @@
 				}
 				return this;
 			},
-			// 事件
+			// 各种事件
 			events: function() {
 				var indexAnimate = this.indexAnimate,
 					arrayAnimate = this.arrayAnimate,
@@ -181,9 +181,9 @@
 
 				// 键盘事件
 				$(document).bind({
+					// 键盘事件
 					"keyup": function(event) {
 						var keyCode = event.keyCode;
-						//alert(keyCode)
 						// 下一页
 						if (keyCode === 39) {
 							indexAnimate++;
@@ -193,14 +193,67 @@
 							indexAnimate--;
 							event.preventDefault();
 							funIndexAnimate();
+						} else if (keyCode === 32) {
+							// 隐藏工具条
+							self.eleFooter.toggle();
+							self.eleHeader.toggle();
 						}
+					},
+					// 3秒后鼠标消失
+					"mousemove": function() {
+						if (self.timerMouse) {
+							clearTimeout(self.timerMouse);
+							$("body").css("cursor", "auto");
+						}
+						self.timerMouse = setTimeout(function() {
+							$("body").css("cursor", "none");
+						}, 3000);
 					}
 				});
+
+				// 工具栏事件
+				if (this.eleToolBar) {
+					// 点击的时候判断data-key，从而判断执行事件
+					this.eleToolBar.find("[data-role='tool']").bind("click", function() {
+						var keyTools = $(this).attr("data-key");
+						switch (keyTools) {
+							// 返回首页
+							case "Home": {
+								indexAnimate = 0;
+								funIndexAnimate();
+								break;
+							}
+							// 上一个
+							case "Previous": {
+								indexAnimate--;
+								funIndexAnimate();
+								break;
+							}
+							// 下一个
+							case "Next": {
+								indexAnimate++;
+								funIndexAnimate();
+								break;
+							}
+							// 跳转
+							case "List": {
+								prompt("请选择跳转到的页面", function() {
+
+								}, function() {
+
+								});
+							}
+						}
+						return false;
+					});
+				}
+
 				return this;
 			},
+			// 工具栏和头部进度条
 			tools: function() {
-				var eleHeader = $("[data-role='header']").eq(0),
-					eleFooter = $("[data-role='footer']").eq(0);
+				var eleHeader = $("[data-role='header']").eq(0);
+				var eleFooter = $("[data-role='footer']").eq(0);
 				// 头部进度条
 				if (eleHeader) {
 					this.eleHeader = eleHeader;
@@ -209,7 +262,6 @@
 
 					this.eleHeader.append(this.eleProcess).append(this.eleTotal);
 					this.process();
-					return this;
 				}
 				var toolsTitles = {
 					"Home": "回到首页|&#x3435;",
@@ -217,17 +269,27 @@
 					"Background": "修改背景|&#xe60b;",
 					"Previous": "前一页|&#xf007a;",
 					"Next": "下一页|&#xe646;",
-					"List": "快速跳转|>&#xe670;"
-				}
+					"List": "快速跳转|&#xe670;"
+				};
 				// 底部工具栏
 				if (eleFooter) {
 					var toolsHtml = "";
 					$.each(this.arrayTools, function(index, key) {
-						console.log("index:"+ index + "&&&&key:" + key)
 						var arrayToolsBtn;
-						//if(toolsTitles[key])
-					})
+						if(toolsTitles[key]) {
+							arrayToolsBtn = toolsTitles[key].split("|");
+							toolsHtml = toolsHtml + " <a href='javascript:;' class='ww-tool' title='" + arrayToolsBtn[0] + "' data-key='" + key + "' data-title='" + arrayToolsBtn[0] +"' data-role='tool'>" + arrayToolsBtn[1] + "</a>";
+						}
+					});
+
+					toolsHtml = toolsHtml + "&nbsp;<a href='javascript:;' class='ww-tool' data-title='帮助' data-role='tool'>&#xe63d;</a>";
+					this.eleToolBar = $("<div class='ww-tool-bar'></div>").html(toolsHtml);
+					this.eleFooter = eleFooter;
+					this.eleFooter.append(this.eleToolBar);
+
 				}
+
+				return this;
 			},
 			//初始化
 			init: function() {
