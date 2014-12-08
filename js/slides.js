@@ -236,13 +236,24 @@
 								break;
 							}
 							// 跳转
-							case "List": {
-								prompt("请选择跳转到的页面", function() {
-
-								}, function() {
-
-								});
+                            case "List": {
+                                var pageNum = prompt("请输入页码", "", function() {
+                                    alert(pageNum)
+                                });
+//								prompt("请选择跳转到的页面", function() {
+//
+//								}, function() {
+//
+//								});
 							}
+                            // 改变背景
+                            case "Background": {
+
+                            }
+                            // 设定提醒
+                            case "Remind": {
+
+                            }
 						}
 						return false;
 					});
