@@ -165,6 +165,7 @@
 			events: function() {
 				var indexAnimate = this.indexAnimate,
 					arrayAnimate = this.arrayAnimate,
+					arraySlide = this.arraySlide,
 					self = this;
 				var funIndexAnimate = function() {
 					if (indexAnimate >= arrayAnimate.length) {
@@ -237,22 +238,32 @@
 							}
 							// 跳转
                             case "List": {
-                                var pageNum = prompt("请输入页码", "", function() {
-                                    alert(pageNum)
-                                });
-//								prompt("请选择跳转到的页面", function() {
-//
-//								}, function() {
-//
-//								});
+	                            function msg() {
+		                            var pageNum = parseInt(window.prompt("请输入页码", ""));
+		                            if(!$.isNumeric(pageNum)) {
+			                            alert("请输出数字")
+		                            } else {
+			                            if(pageNum <= 0 || pageNum > self.arraySlide.length) {
+				                            alert("页码无效")
+			                            } else {
+				                            var slideNum = arraySlide[pageNum-1].data("index");
+				                            indexAnimate = slideNum;
+				                            funIndexAnimate();
+			                            }
+		                            }
+	                            }
+	                            msg();
+	                            break;
 							}
                             // 改变背景
                             case "Background": {
-
+	                            alert("开发中，敬请期待");
+	                            break;
                             }
                             // 设定提醒
                             case "Remind": {
-
+								alert("开发中，敬请期待");
+	                            break;
                             }
 						}
 						return false;
