@@ -225,20 +225,23 @@ p {
 	section {
 		padding: 1em 5%;
 		pre {
-			margin: 0;
-			padding: 1em;
-			display: block;
-			border-radius: 1em;
-			background-color: rgba(0,0,0,.2);
-			box-shadow: inset 2px 2px 4px rgba(0,0,0,.5);
-			font-family: "Lucida Console", Monaco, monospace;
-			font-size: 80%;
-			white-space: pre-wrap;
-			word-wrap: break-word;
-			&.small {
-				font-size: 50%;
-			}
+			font-size: 60%;
 		}
+//		pre {
+//			margin: 0;
+//			padding: 1em;
+//			display: block;
+//			border-radius: 1em;
+//			background-color: rgba(0,0,0,.2);
+//			box-shadow: inset 2px 2px 4px rgba(0,0,0,.5);
+//			font-family: "Lucida Console", Monaco, monospace;
+//			font-size: 80%;
+//			white-space: pre-wrap;
+//			word-wrap: break-word;
+//			&.small {
+//				font-size: 50%;
+//			}
+//		}
 	}
 }
 .ww-fade {

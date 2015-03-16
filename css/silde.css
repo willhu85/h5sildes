@@ -4,7 +4,7 @@ html, body {
 
 body {
   margin: 0;
-  background-color: #e64346;
+  background-color: #E64346;
   font-family: "Microsoft Yahei";
   background-image: -webkit-radial-gradient(circle at center, rgba(225, 225, 225, 0.2), rgba(225, 225, 225, 0));
   background-image: radial-gradient(circle at center, rgba(225, 225, 225, 0.2), rgba(225, 225, 225, 0)); }
@@ -91,61 +91,51 @@ p {
 @-webkit-keyframes slideinfromright {
   from {
     -webkit-transform: translateX(100%); }
-
   to {
     -webkit-transform: translateX(0); } }
 @-webkit-keyframes slideinfromleft {
   from {
     -webkit-transform: translateX(-100%); }
-
   to {
     -webkit-transform: translateX(0); } }
 @-webkit-keyframes slideouttoleft {
   from {
     -webkit-transform: translateX(0); }
-
   to {
     -webkit-transform: translateX(-100%); } }
 @-webkit-keyframes slideouttoright {
   from {
     -webkit-transform: translateX(0); }
-
   to {
     -webkit-transform: translateX(100%); } }
 @-webkit-keyframes slideinfromtop {
   from {
     -webkit-transform: translateY(-100%); }
-
   to {
     -webkit-transform: translateY(0); } }
 @-webkit-keyframes slideinfrombottom {
   from {
     -webkit-transform: translateY(100%); }
-
   to {
     -webkit-transform: translateY(0); } }
 @-webkit-keyframes slideouttobottom {
   from {
     -webkit-transform: translateY(0); }
-
   to {
     -webkit-transform: translateY(100%); } }
 @-webkit-keyframes slideouttotop {
   from {
     -webkit-transform: translateY(0); }
-
   to {
     -webkit-transform: translateY(-100%); } }
 @-webkit-keyframes fadein {
   from {
     opacity: 0; }
-
   to {
     opacity: 1; } }
 @-webkit-keyframes fadeout {
   from {
     opacity: 1; }
-
   to {
     opacity: 0; } }
 .fade.out {
@@ -198,18 +188,7 @@ p {
   .ww-slide section {
     padding: 1em 5%; }
     .ww-slide section pre {
-      margin: 0;
-      padding: 1em;
-      display: block;
-      border-radius: 1em;
-      background-color: rgba(0, 0, 0, 0.2);
-      box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.5);
-      font-family: "Lucida Console", Monaco, monospace;
-      font-size: 80%;
-      white-space: pre-wrap;
-      word-wrap: break-word; }
-      .ww-slide section pre.small {
-        font-size: 50%; }
+      font-size: 60%; }
 
 .ww-fade {
   opacity: 0; }

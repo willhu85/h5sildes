@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>幻灯片展示——JDC上海前端团队</title>
     <link rel="stylesheet" href="../css/silde.css">
+	<link rel="stylesheet" href="../css/prism.css">
 </head>
 <body>
 <!-- 头部 -->
@@ -24,10 +25,10 @@
 <div id="slide2" class="ww-slide slide" data-role="slide">
     <h2>二级级标题</h2>
     <section>
-        <pre>var fn = {
+        <pre><code class="language-javascript">var fn = {
     a: 1,
     b: function() {}
-}</pre>
+}</code></pre>
         <p>这个事内容</p>
         <p>这个事内容</p>
     </section>
@@ -48,6 +49,7 @@
     <div class="ww-tool-bar"></div>
 </footer>
 <script src="../js/jquery-1.11.1.js"></script>
+<script src="../js/prism.js"></script>
 <script src="../js/slides.js"></script>
 <script>
 $(function() {
